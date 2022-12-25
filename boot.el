@@ -12,6 +12,7 @@
 
 (emacs-pkg-boot 'xprint "https://github.com/emacs-pkg/xprint/raw/main/xprint.el")
 
+(xclear)
 (xformat "boot.el has started!")
 
 (defun pkg-boot-get-text-from-url (url)
@@ -19,8 +20,7 @@
     (url-insert-file-contents url)
     (buffer-substring (point-min) (point-max))))
 
-(xdump (pkg-boot-get-text-from-url "https://ungh.cc/repos/unjs/h3"))
+(defun pkg-boot-get-json-from-url (url)
+  (json-read-from-string (pkg-boot-get-text-from-url url)))
 
-(let ((json (pkg-boot-get-text-from-url "https://ungh.cc/repos/unjs/h3")))
-  (xdump (json-read-from-string json))
-  )
+(xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick"))
