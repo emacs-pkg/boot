@@ -16,12 +16,16 @@
 (xformat "boot.el has started!")
 
 (defun pkg-boot-get-text-from-url (url)
-  (with-temp-buffer
-    (url-insert-file-contents url)
-    (buffer-substring (point-min) (point-max))))
+  (condition-case nil
+      (with-temp-buffer
+        (url-insert-file-contents url)
+        (buffer-substring (point-min) (point-max)))
+    (error nil)))
 
 (defun pkg-boot-get-json-from-url (url)
-  (json-read-from-string (pkg-boot-get-text-from-url url)))
+  (condition-case nil
+      (json-read-from-string (pkg-boot-get-text-from-url url))
+    (error nil)))
 
 (xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick"))
 (xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick/contributors"))
@@ -45,3 +49,4 @@
   (pkg-boot-write-text-to-file full-path "hello world!ハロー©")
   (pkg-boot-write-text-to-file "aaa/bbb/ddd.txt" '(msg . "hello world!ハロー©"))
   )
+(xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/boot/releases/latest"))
