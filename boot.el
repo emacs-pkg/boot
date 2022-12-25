@@ -24,3 +24,7 @@
   (json-read-from-string (pkg-boot-get-text-from-url url)))
 
 (xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick"))
+(xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick/contributors"))
+(xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick/files/main"))
+(xdump (pkg-boot-get-json-from-url "https://ungh.cc/repos/emacs-pkg/c-quick/releases/latest"))
+(xprint :raw (pkg-boot-get-text-from-url "https://github.com/emacs-pkg/c-quick/raw/v1.4.4/c-quick.el"))
