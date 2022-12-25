@@ -41,10 +41,10 @@
       (let ((vec (cdr (assoc 'files json))))
         (mapcar #'(lambda (x) (cdr (assoc 'path x))) vec)))))
 
-(defun pkg-boot-github-file (repo branch path)
+(defun pkg-boot-github-file-text (repo branch path)
   (pkg-boot-get-text-from-url (format "https://github.com/%s/raw/%s/%s" repo branch path)))
 
-(xdump (pkg-boot-github-file "emacs-pkg/c-quick" "v1.4.4" "c-quick.el"))
+(xdump (pkg-boot-github-file-text "emacs-pkg/c-quick" "v1.4.4" "c-quick.el"))
 
 (xdump (pkg-boot-github-api "emacs-pkg/c-quick" nil))
 
