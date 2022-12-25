@@ -20,3 +20,7 @@
     (buffer-substring (point-min) (point-max))))
 
 (xdump (pkg-boot-get-text-from-url "https://ungh.cc/repos/unjs/h3"))
+
+(let ((json (pkg-boot-get-text-from-url "https://ungh.cc/repos/unjs/h3")))
+  (xdump (json-read-from-string json))
+  )
