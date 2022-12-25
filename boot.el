@@ -61,11 +61,12 @@
 (defun pkg-boot-write-text-to-file (path text)
   (unless (stringp text) (setq text (format "%S" text)))
   (prog1 text
-    (with-temp-buffer
-      (insert text)
-      ;;(make-directory (file-name-directory path) 'parents)
-      (make-empty-file path 'parents)
-      (write-region (point-min) (point-max) path nil 'quiet))))
+    (let ((buffer-file-coding-system 'utf-8))
+      (with-temp-buffer
+        (insert text)
+        ;;(make-directory (file-name-directory path) 'parents)
+        (make-empty-file path 'parents)
+        (write-region (point-min) (point-max) path nil 'quiet)))))
 
 (let* ((default-directory "~/")
        (full-path (file-truename "aaa/bbb/ccc.txt")))
