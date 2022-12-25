@@ -13,3 +13,10 @@
 (emacs-pkg-boot 'xprint "https://github.com/emacs-pkg/xprint/raw/main/xprint.el")
 
 (xformat "boot.el has started!")
+
+(defun pkg-boot-get-text-from-url (url)
+  (with-temp-buffer
+    (url-insert-file-contents url)
+    (buffer-substring (point-min) (point-max))))
+
+(xdump (pkg-boot-get-text-from-url "https://ungh.cc/repos/unjs/h3"))
